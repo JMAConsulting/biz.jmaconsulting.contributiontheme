@@ -1,0 +1,49 @@
+.button-block {
+  background-color: #026288 !important;
+  color: #fff !important;
+  border: 2px solid #636359 !important;
+  border-radius: 0px;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  padding: 16px 28px;
+  line-height: 1;
+  transition: 0.12s;
+  outline: 0;
+  display: inline-block;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.other-section {
+  float: right;
+  position: relative;
+  margin-top: -60px;
+  margin-right: 22px;
+}
+
+#price_10 {
+  height: 43px;
+  background-color: #026288 !important;
+  border: 2px solid #636359 !important;
+  border-radius: 0px;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+.button-block:hover {
+  color: #ffffff !important;
+  border: 2px solid #026288 !important;
+  position: relative; 
+  top: -2px; 
+}
+
+/*
+.button-block:active {
+  font-family: fontawesome;
+  content: '\f00c';
+  margin-right: 6px;
+  opacity: 0.85;
+}
+*/
