@@ -23,13 +23,15 @@
 }
 
 #price_10 {
-  height: 43px;
   background-color: #026288 !important;
   border: 2px solid #636359 !important;
   border-radius: 0px;
   font-size: 16px;
   text-transform: uppercase;
   text-decoration: none !important;
+  position: relative;
+  height: 40px !important;
+  margin-left: 15px !important;
 }
 
 .button-block:hover {
@@ -39,11 +41,29 @@
   top: -2px; 
 }
 
+#gift_type, #donation_type {
+  text-align: center !important;
+  padding-bottom: 35px;
+}
+
+#donation_type, #pricesetTotal {
+  padding-top: 35px;
+}
+  
+
+input[type="radio"]:checked+label {
+  font-weight: bold;
+  font-family: fontawesome;
+  content: '\f00c';
+}
+
+.is_recur-section, .is_for_organization-section {
+  display: none;
+}
+
 /*
 .button-block:active {
   font-family: fontawesome;
   content: '\f00c';
-  margin-right: 6px;
-  opacity: 0.85;
 }
 */

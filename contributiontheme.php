@@ -107,11 +107,17 @@ function contributiontheme_civicrm_alterSettingsFolders(&$metaDataFolders = NULL
   _contributiontheme_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
+
+
 function contributiontheme_civicrm_buildForm($formName, &$form) {
   if ($formName == "CRM_Contribute_Form_Contribution_Main") {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
+    $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
+    $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
+    $form->setDefaults(['gift_type' => 'one_time', 'donation_type' => 'personal']);
     CRM_Core_Region::instance('page-body')->add(array(
       'template' => 'CRM/ContributionTheme.tpl',
     ));
   }
 }
+
