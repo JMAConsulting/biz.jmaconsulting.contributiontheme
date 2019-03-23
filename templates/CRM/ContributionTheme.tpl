@@ -4,11 +4,11 @@
 {literal}
 <script type="text/javascript">
 CRM.$(function($) {
-  var onetimeprice = "price_9";
-  var monthlyprice = "price_13";
-  var otherprice = "price_10";
-  var onetimenone = "CIVICRM_QFID_0_14";
-  var monthlynone = "CIVICRM_QFID_0_24";
+  var onetimeprice = "price_172";
+  var monthlyprice = "price_173";
+  var otherprice = "price_174";
+  var onetimenone = "CIVICRM_QFID_0_30";
+  var monthlynone = "CIVICRM_QFID_0_40";
 
   $('input[name="' + onetimeprice + '"]').css('display', 'none');
   $('input[name="' + monthlyprice + '"]').css('display', 'none');
@@ -17,7 +17,7 @@ CRM.$(function($) {
   $('input[name="' + monthlyprice + '"]+label').addClass('button-block');
 
   $('.amount_monthly-section').hide();
-  $('.amount-section').hide();
+  $('.amount_one_time-section').hide();
   $('#' + otherprice).hide();
 
   var gifttype = $('input[name=gift_type]:checked').val();
@@ -41,8 +41,7 @@ CRM.$(function($) {
   // Other checkbox
   $("label[for='" + otherprice + "']").text('');
   // "None" price field.
-  $("label[for='" + onetimenone + "']").text('Other');
-  $("label[for='" + monthlynone + "']").text('Other');
+  $("#" + otherprice).prev('label').text('Other');
 
   $('input[name="gift_type"]').change(function() {
     hideShow($(this).val());
@@ -78,7 +77,7 @@ CRM.$(function($) {
     if (type == 'monthly') {
       $('.amount_monthly-section').show();
       $('#' + otherprice).show();
-      $('.amount-section').hide();
+      $('.amount_one_time-section').hide();
       $('#is_recur').prop('checked', true);
       $('#' + otherprice).appendTo($('#' + monthlynone).parent());
 
@@ -91,7 +90,7 @@ CRM.$(function($) {
       $('#' + otherprice).trigger('keyup');
     }
     else {
-      $('.amount-section').show();
+      $('.amount_one_time-section').show();
       $('#' + otherprice).show();
       $('.amount_monthly-section').hide();
       $('#is_recur').prop('checked', false);

@@ -110,7 +110,7 @@ function contributiontheme_civicrm_alterSettingsFolders(&$metaDataFolders = NULL
 
 
 function contributiontheme_civicrm_buildForm($formName, &$form) {
-  if ($formName == "CRM_Contribute_Form_Contribution_Main") {
+  if ($formName == "CRM_Contribute_Form_Contribution_Main" && $form->_id == 1) {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
     $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
     $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');

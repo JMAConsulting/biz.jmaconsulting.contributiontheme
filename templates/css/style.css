@@ -22,7 +22,7 @@
   margin-right: 22px;
 }
 
-#price_10 {
+#price_174 {
   background-color: #026288 !important;
   border: 2px solid #636359 !important;
   border-radius: 0px;
@@ -32,6 +32,9 @@
   position: relative;
   height: 40px !important;
   margin-left: 15px !important;
+  color: #ffffff !important;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .button-block:hover {
@@ -52,18 +55,22 @@
   
 
 input[type="radio"]:checked+label {
-  font-weight: bold;
-  font-family: fontawesome;
-  content: '\f00c';
+  font-weight: bold !important;
+}
+
+input[type="radio"]:checked+label:before {
+  content: "\f00c";
+  font-family: FontAwesome;
 }
 
 .is_recur-section, .is_for_organization-section {
   display: none;
 }
 
-/*
-.button-block:active {
-  font-family: fontawesome;
-  content: '\f00c';
+.soft_credit_type_id-section {
+  padding-bottom: 18px;
 }
-*/
+
+.amount_one_time-section > div.label > label:first-child, .amount_monthly-section > div.label > label:first-child {
+  display: none;
+}
