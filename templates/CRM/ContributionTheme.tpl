@@ -1,5 +1,10 @@
 <div id="gift_type">{$form.gift_type.html}</div>
 <div id="donation_type">{$form.donation_type.html}</div>
+<div id="chapter_code_section" class="crm-section">
+  <div class="label">{$form.chapter_code.label}</div>
+  <div class="content">{$form.chapter_code.html}</div>
+</div>
+
 
 {literal}
 <script type="text/javascript">
@@ -7,8 +12,9 @@ CRM.$(function($) {
   var onetimeprice = "price_172";
   var monthlyprice = "price_173";
   var otherprice = "price_174";
-  var onetimenone = "CIVICRM_QFID_0_30";
-  var monthlynone = "CIVICRM_QFID_0_40";
+  var onetimenone = $('input[name=price_172][value=0]');
+  var monthlynone = $('input[name=price_173][value=0]');
+  var fgifttype = "custom_13";
 
   $('input[name="' + onetimeprice + '"]').css('display', 'none');
   $('input[name="' + monthlyprice + '"]').css('display', 'none');
@@ -22,6 +28,26 @@ CRM.$(function($) {
 
   var gifttype = $('input[name=gift_type]:checked').val();
   hideShow(gifttype);
+
+  // Chapter Code
+  $('#chapter_code_section').insertAfter($('#editrow-' + fgifttype));
+  // Select based on financial gift type
+  if ($('#' + fgifttype).val() == "Chapter") {
+    $('#chapter_code_section').show();
+  }
+  else {
+    $('#chapter_code').select2('val', 0);
+    $('#chapter_code_section').hide();
+  }
+  $('#' + fgifttype).change(function() {
+    if ($(this).val() == "Chapter") {
+      $('#chapter_code_section').fadeIn();
+    }
+    else {
+      $('#chapter_code').select2('val', 0);
+      $('#chapter_code_section').fadeOut();
+    }
+  });
 
   // Gift Type
   $('input[name="gift_type"]').css('display', 'none');
@@ -41,7 +67,8 @@ CRM.$(function($) {
   // Other checkbox
   $("label[for='" + otherprice + "']").text('');
   // "None" price field.
-  $("#" + otherprice).prev('label').text('Other');
+  $(onetimenone).next('label').text('Other');
+  $(monthlynone).next('label').text('Other');
 
   $('input[name="gift_type"]').change(function() {
     hideShow($(this).val());
@@ -53,12 +80,12 @@ CRM.$(function($) {
   
   $('#' + otherprice).click(function() {
     if (gifttype == "monthly") {
-      $('#' + monthlynone).parent().addClass('highlight');
-      $('#' + onetimenone).parent().removeClass('highlight');
+      $(monthlynone).parent().addClass('highlight');
+      $(onetimenone).parent().removeClass('highlight');
     }
     else {
-      $('#' + onetimenone).parent().addClass('highlight');
-      $('#' + monthlynone).parent().removeClass('highlight');
+      $(onetimenone).parent().addClass('highlight');
+      $(monthlynone).parent().removeClass('highlight');
     }
   });
 
@@ -79,13 +106,13 @@ CRM.$(function($) {
       $('#' + otherprice).show();
       $('.amount_one_time-section').hide();
       $('#is_recur').prop('checked', true);
-      $('#' + otherprice).appendTo($('#' + monthlynone).parent());
+      $('#' + otherprice).appendTo($(monthlynone).parent());
 
       // Check the none textbox
-      $("#" + onetimenone).prop('checked', true);
-      $("#" + onetimenone).trigger('click');
+      $(onetimenone).prop('checked', true);
+      $(onetimenone).trigger('click');
       $('input[name="' + onetimeprice + '"]').parent().removeClass('highlight');
-      $('#' + onetimenone).parent().removeClass('highlight');
+      $(onetimenone).parent().removeClass('highlight');
       $('#' + otherprice).val('');
       $('#' + otherprice).trigger('keyup');
     }
@@ -94,13 +121,13 @@ CRM.$(function($) {
       $('#' + otherprice).show();
       $('.amount_monthly-section').hide();
       $('#is_recur').prop('checked', false);
-      $('#' + otherprice).appendTo($('#' + onetimenone).parent());
+      $('#' + otherprice).appendTo($(onetimenone).parent());
 
       // Check the none textbox
-      $("#" + monthlynone).prop('checked', true);
-      $("#" + monthlynone).trigger('click');
+      $(monthlynone).prop('checked', true);
+      $(monthlynone).trigger('click');
       $('input[name="' + monthlyprice + '"]').parent().removeClass('highlight');
-      $('#' + monthlynone).parent().removeClass('highlight');
+      $(monthlynone).parent().removeClass('highlight');
       $('#' + otherprice).val('');
       $('#' + otherprice).trigger('keyup');
     }

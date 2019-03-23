@@ -114,6 +114,12 @@ function contributiontheme_civicrm_buildForm($formName, &$form) {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
     $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
     $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
+    $chapters = ['- select -'] + CRM_Core_OptionGroup::values('chapter_codes');
+    asort($chapters);
+    unset($chapters[1000]);
+    $form->add('select', 'chapter_code',
+      ts('Chapter'), $chapters, FALSE, array('class' => 'crm-select2 ')
+    );
     $form->setDefaults(['gift_type' => 'one_time', 'donation_type' => 'personal']);
     CRM_Core_Region::instance('page-body')->add(array(
       'template' => 'CRM/ContributionTheme.tpl',
