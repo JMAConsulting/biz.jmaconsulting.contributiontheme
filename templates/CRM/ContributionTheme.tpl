@@ -32,22 +32,28 @@ CRM.$(function($) {
   // Chapter Code
   $('#chapter_code_section').insertAfter($('#editrow-' + fgifttype));
   // Select based on financial gift type
-  if ($('#' + fgifttype).val() == "Chapter") {
-    $('#chapter_code_section').show();
-  }
-  else {
-    $('#chapter_code').select2('val', 0);
-    $('#chapter_code_section').hide();
-  }
+  var chapterarr = ["General Donations", "Adult Support Programs", "Autism Awareness Day", "Other Directed Donations"];
+  var hidechap = ["Scholarship Revenue", "Jeanette Holden Scholarship", "Hollylyn Towie Scholarship", "Research"];
+  hideShowChapter($('#' + fgifttype).val());
+
   $('#' + fgifttype).change(function() {
-    if ($(this).val() == "Chapter") {
-      $('#chapter_code_section').fadeIn();
+    hideShowChapter($(this).val());
+  });
+
+  function hideShowChapter(giftval) {
+    if ($.inArray(giftval, chapterarr) !='-1') {
+      $('#chapter_code').select2('val', 1000);
+      $('#chapter_code_section').show();
+    }
+    else if ($.inArray(giftval, hidechap) !='-1') {
+      $('#chapter_code').select2('val', 1000);
+      $('#chapter_code_section').hide();
     }
     else {
       $('#chapter_code').select2('val', 0);
-      $('#chapter_code_section').fadeOut();
+      $('#chapter_code_section').hide();
     }
-  });
+  }
 
   // Gift Type
   $('input[name="gift_type"]').css('display', 'none');

@@ -116,7 +116,6 @@ function contributiontheme_civicrm_buildForm($formName, &$form) {
     $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
     $chapters = ['- select -'] + CRM_Core_OptionGroup::values('chapter_codes');
     asort($chapters);
-    unset($chapters[1000]);
     $form->add('select', 'chapter_code',
       ts('Chapter'), $chapters, FALSE, array('class' => 'crm-select2 ')
     );
