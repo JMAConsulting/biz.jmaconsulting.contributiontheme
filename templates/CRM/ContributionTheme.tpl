@@ -32,7 +32,7 @@ CRM.$(function($) {
   // Chapter Code
   $('#chapter_code_section').insertAfter($('#editrow-' + fgifttype));
   // Select based on financial gift type
-  var chapterarr = ["General Donations", "Adult Support Programs", "Autism Awareness Day", "Building Brighter Futures Fund", "Tribute (In Honour of/Memory of)"];
+  var chapterarr = ["General Donation", "Adult Support Program", "Autism Awareness Day", "Building Brighter Futures Fund", "Tribute (In Honour of/Memory of)"];
   var hidechap = ["Eleanor Ritchie Scholarship", "Jeanette Holden Scholarship", "Hollylyn Towie Scholarship", "Research"];
   hideShowChapter($('#' + fgifttype).val());
 
@@ -117,7 +117,7 @@ CRM.$(function($) {
       $('#' + fgifttype).trigger('change');
     }
     else {
-      $('#' + fgifttype).select2('val', "General Donations");
+      $('#' + fgifttype).select2('val', "General Donation");
       $('#' + fgifttype).trigger('change');
       $('#editrow-' + fgifttype).show();
     }
