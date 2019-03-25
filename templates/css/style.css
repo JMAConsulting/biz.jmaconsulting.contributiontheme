@@ -74,3 +74,7 @@ input[type="radio"]:checked+label:before {
 .amount_one_time-section > div.label > label:first-child, .amount_monthly-section > div.label > label:first-child {
   display: none;
 }
+
+#s2id_custom_13 {
+  width: 234px !important;
+}

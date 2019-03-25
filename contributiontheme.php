@@ -114,8 +114,32 @@ function contributiontheme_civicrm_buildForm($formName, &$form) {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
     $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
     $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
-    $chapters = ['- select -'] + CRM_Core_OptionGroup::values('chapter_codes');
+    $chapters = CRM_Core_OptionGroup::values('chapter_codes');
+    $validChapters = [
+      "Provincial Office",
+      "Central West (Peel, Wellington, Waterloo, Halton, Hamilton)",
+      "Chatham",
+      "Durham",
+      "Grey/Bruce",
+      "Huron Perth",
+      "Kingston",
+      "London",
+      "Metro Toronto",
+      "Niagara Region",
+      "North East",
+      "Ottawa",
+      "Peterborough",
+      "Sault St. Marie",
+      "Simcoe",
+      "Sudbury & District",
+      "Thunder Bay & District",
+      "Upper Canada",
+      "Windsor/Essex",
+      "York Region",
+    ];
     asort($chapters);
+    $chapters = array_intersect($chapters, $validChapters);
+    $chapters = [1000 => "Provincial Office"] + $chapters;
     $form->add('select', 'chapter_code',
       ts('Chapter'), $chapters, FALSE, array('class' => 'crm-select2 ')
     );

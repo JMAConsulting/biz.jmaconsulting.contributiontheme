@@ -32,8 +32,8 @@ CRM.$(function($) {
   // Chapter Code
   $('#chapter_code_section').insertAfter($('#editrow-' + fgifttype));
   // Select based on financial gift type
-  var chapterarr = ["General Donations", "Adult Support Programs", "Autism Awareness Day", "Other Directed Donations"];
-  var hidechap = ["Scholarship Revenue", "Jeanette Holden Scholarship", "Hollylyn Towie Scholarship", "Research"];
+  var chapterarr = ["General Donations", "Adult Support Programs", "Autism Awareness Day", "Building Brighter Futures Fund", "Tribute (In Honour of/Memory of)"];
+  var hidechap = ["Eleanor Ritchie Scholarship", "Jeanette Holden Scholarship", "Hollylyn Towie Scholarship", "Research"];
   hideShowChapter($('#' + fgifttype).val());
 
   $('#' + fgifttype).change(function() {
@@ -70,6 +70,10 @@ CRM.$(function($) {
   $('input[name="soft_credit_type_id"]+label').addClass('button-block');
   $('.soft_credit_type_id-section').find('div.description').hide();
 
+  $('input[name="soft_credit_type_id"]').change(function() {
+    hideShowGift(this.checked);
+  });
+
   // Other checkbox
   $("label[for='" + otherprice + "']").text('');
   // "None" price field.
@@ -103,6 +107,19 @@ CRM.$(function($) {
     else {
       $("#is_for_organization").prop('checked', true);
       $("#is_for_organization").trigger('click');
+    }
+  }
+
+  function hideShowGift(type) {
+    if (type) {
+      $('#editrow-' + fgifttype).hide();
+      $('#' + fgifttype).select2('val', "Tribute (In Honour of/Memory of)");
+      $('#' + fgifttype).trigger('change');
+    }
+    else {
+      $('#' + fgifttype).select2('val', "General Donations");
+      $('#' + fgifttype).trigger('change');
+      $('#editrow-' + fgifttype).show();
     }
   }
 
