@@ -107,8 +107,6 @@ function contributiontheme_civicrm_alterSettingsFolders(&$metaDataFolders = NULL
   _contributiontheme_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
-
-
 function contributiontheme_civicrm_buildForm($formName, &$form) {
   if ($formName == "CRM_Contribute_Form_Contribution_Main" && $form->_id == 1) {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
