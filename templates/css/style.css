@@ -40,6 +40,10 @@
   color: #ffffff !important;
 }
 
+#price_174:([type='radio']) {
+  color: #ffffff !important;
+}
+
 .button-block:hover {
   color: #ffffff !important;
   border: 2px solid #026288 !important;
