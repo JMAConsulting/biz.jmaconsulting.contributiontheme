@@ -110,8 +110,17 @@ function contributiontheme_civicrm_alterSettingsFolders(&$metaDataFolders = NULL
 function contributiontheme_civicrm_buildForm($formName, &$form) {
   if ($formName == "CRM_Contribute_Form_Contribution_Main" && $form->_id == 1) {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
-    $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
-    $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
+    if (\Drupal::languageManager()->getCurrentLanguage()->getId() == 'fr') {
+      $form->addRadio('gift_type', ts(''), ['monthly' => ts('Mensuel'), 'one_time' => ts('Ponctuel')], null, '&nbsp;&nbsp;');
+      $form->addRadio('donation_type', ts(''), ['personal' => ts('Don personnel'), 'organization' => ts('Don organisationnel')], null, '&nbsp;&nbsp;');
+      $form->assign('isFr', TRUE);
+      $chapterLabel = "Section locale";
+    }
+    else {
+      $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
+      $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
+      $chapterLabel = "Chapter";
+    }
     $chapters = CRM_Core_OptionGroup::values('chapter_codes');
     $validChapters = [
       1000 => "Provincial Office",
@@ -143,7 +152,7 @@ function contributiontheme_civicrm_buildForm($formName, &$form) {
     }
     $chapters = [1000 => $provincial] + $chapters;
     $form->add('select', 'chapter_code',
-      ts('Chapter'), $chapters, FALSE, array('class' => 'crm-select2 ')
+      ts($chapterLabel), $chapters, FALSE, array('class' => 'crm-select2 ')
     );
     $form->setDefaults(['gift_type' => 'one_time', 'donation_type' => 'personal']);
     CRM_Core_Region::instance('page-body')->add(array(

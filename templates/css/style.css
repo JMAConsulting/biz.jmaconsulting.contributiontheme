@@ -36,19 +36,15 @@
   font-size: 18px;
 }
 
-#price_174:([type='radio']) {
-  color: #ffffff !important;
-}
-
-#price_174:([type='radio']) {
-  color: #ffffff !important;
+#price_174:([type='radio']){
+color: #ffffff !important;
 }
 
 .button-block:hover {
   color: #ffffff !important;
   border: 2px solid #026288 !important;
-  position: relative;
-  top: -2px;
+  position: relative; 
+  top: -2px; 
 }
 
 #gift_type, #donation_type {
@@ -59,7 +55,7 @@
 #donation_type, #pricesetTotal {
   padding-top: 35px;
 }
-
+  
 
 input[type="radio"]:checked+label {
   font-weight: bold !important;
@@ -84,4 +80,28 @@ input[type="radio"]:checked+label:before {
 
 #s2id_custom_13 {
   width: 234px !important;
+}
+
+#_qf_Main_upload-bottom {
+  width: 195px !important;
+}
+
+.price-set-rows {
+  padding: 20px 0;
+}
+
+@media only screen and (max-width: 901px) {
+  /* For mobile phones: */
+  .crm-container .crm-section .content {
+    margin-left: 28% !important;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  /* For mobile phones: */ 
+  #price_174 {
+    display: block !important;
+    margin-top: 25px !important;
+    margin-left: 7px !important;
+  }
 }
