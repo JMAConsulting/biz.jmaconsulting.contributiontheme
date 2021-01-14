@@ -108,52 +108,10 @@ function contributiontheme_civicrm_alterSettingsFolders(&$metaDataFolders = NULL
 }
 
 function contributiontheme_civicrm_buildForm($formName, &$form) {
-  if ($formName == "CRM_Contribute_Form_Contribution_Main" && $form->_id == 1) {
+  if ($formName == "CRM_Contribute_Form_Contribution_Main" && $form->_id == 16) {
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
-    if (\Drupal::languageManager()->getCurrentLanguage()->getId() == 'fr') {
-      $form->addRadio('gift_type', ts(''), ['monthly' => ts('Mensuel'), 'one_time' => ts('Ponctuel')], null, '&nbsp;&nbsp;');
-      $form->addRadio('donation_type', ts(''), ['personal' => ts('Don personnel'), 'organization' => ts('Don organisationnel')], null, '&nbsp;&nbsp;');
-      $form->assign('isFr', TRUE);
-      $chapterLabel = "Section locale";
-    }
-    else {
-      $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
-      $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
-      $chapterLabel = "Chapter";
-    }
-    $chapters = CRM_Core_OptionGroup::values('chapter_codes');
-    $validChapters = [
-      1000 => "Provincial Office",
-      1040 => "Central West (Peel, Wellington, Waterloo, Halton, Hamilton)",
-      1003 => "Chatham",
-      1005 => "Durham",
-      1006 => "Grey/Bruce",
-      1009 => "Huron Perth",
-      1010 => "Kingston",
-      1011 => "London",
-      1012 => "Toronto",
-      1013 => "Niagara Region",
-      1014 => "North East",
-      1015 => "Ottawa",
-      1017 => "Peterborough",
-      1021 => "Sault St. Marie",
-      1022 => "Simcoe",
-      1023 => "Sudbury & District",
-      1025 => "Thunder Bay & District",
-      1026 => "Upper Canada",
-      1030 => "Windsor/Essex",
-      1031 => "York Region",
-    ];
-    asort($chapters);
-    $chapters = array_intersect_key($chapters, $validChapters);
-    $provincial = "Provincial Office";
-    if (\Drupal::languageManager()->getCurrentLanguage()->getId() == 'fr') {
-      $provincial = "Bureau provincial";
-    }
-    $chapters = [1000 => $provincial] + $chapters;
-    $form->add('select', 'chapter_code',
-      ts($chapterLabel), $chapters, FALSE, array('class' => 'crm-select2 ')
-    );
+    $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
+    $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
     $form->setDefaults(['gift_type' => 'one_time', 'donation_type' => 'personal']);
     CRM_Core_Region::instance('page-body')->add(array(
       'template' => 'CRM/ContributionTheme.tpl',

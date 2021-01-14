@@ -22,7 +22,7 @@
   margin-right: 22px;
 }
 
-#price_174 {
+#price_438 {
   background-color: #026288 !important;
   border: 2px solid #636359 !important;
   border-radius: 0px;
@@ -36,7 +36,7 @@
   font-size: 18px;
 }
 
-#price_174:([type='radio']){
+#price_438:([type='radio']){
 color: #ffffff !important;
 }
 
@@ -74,12 +74,8 @@ input[type="radio"]:checked+label:before {
   padding-bottom: 18px;
 }
 
-.amount_one_time-section > div.label > label:first-child, .amount_monthly-section > div.label > label:first-child {
+.one_time-section > div.label > label:first-child, .monthly-section > div.label > label:first-child {
   display: none;
-}
-
-#s2id_custom_13 {
-  width: 234px !important;
 }
 
 #_qf_Main_upload-bottom {
@@ -99,7 +95,7 @@ input[type="radio"]:checked+label:before {
 
 @media only screen and (max-width: 420px) {
   /* For mobile phones: */ 
-  #price_174 {
+  #price_438 {
     display: block !important;
     margin-top: 25px !important;
     margin-left: 7px !important;

@@ -1,19 +1,14 @@
 <div id="gift_type">{$form.gift_type.html}</div>
 <div id="donation_type">{$form.donation_type.html}</div>
-<div id="chapter_code_section" class="crm-section">
-  <div class="label">{$form.chapter_code.label}</div>
-  <div class="content">{$form.chapter_code.html}</div>
-</div>
 
 {literal}
 <script type="text/javascript">
 CRM.$(function($) {
-  var onetimeprice = "price_172";
-  var monthlyprice = "price_173";
-  var otherprice = "price_174";
-  var onetimenone = $('input[name=price_172][value=0]');
-  var monthlynone = $('input[name=price_173][value=0]');
-  var fgifttype = "custom_13";
+  var onetimeprice = "price_436";
+  var monthlyprice = "price_437";
+  var otherprice = "price_438";
+  var onetimenone = $('input[name=price_436][value=0]');
+  var monthlynone = $('input[name=price_437][value=0]');
 
   $('input[name="' + onetimeprice + '"]').css('display', 'none');
   $('input[name="' + monthlyprice + '"]').css('display', 'none');
@@ -21,40 +16,14 @@ CRM.$(function($) {
   $('input[name="' + onetimeprice + '"]+label').addClass('button-block');
   $('input[name="' + monthlyprice + '"]+label').addClass('button-block');
 
-  $('.amount_monthly-section').hide();
-  $('.amount_monthly-section > .label').hide();
-  $('.amount_one_time-section').hide();
-  $('.amount_one_time-section > .label').hide();
+  $('.monthly-section').hide();
+  $('.monthly-section > .label').hide();
+  $('.one_time-section').hide();
+  $('.one_time-section > .label').hide();
   $('#' + otherprice).hide();
 
   var gifttype = $('input[name=gift_type]:checked').val();
   hideShow(gifttype);
-
-  // Chapter Code
-  $('#chapter_code_section').insertAfter($('#editrow-' + fgifttype));
-  // Select based on financial gift type
-  var chapterarr = ["General Donation", "Adult Support Program", "Autism Awareness Day", "Building Brighter Futures Fund", "Memorial Donation"];
-  var hidechap = ["Eleanor Ritchie Scholarship", "Jeanette Holden Scholarship", "Hollylyn Towie Scholarship", "Research"];
-  hideShowChapter($('#' + fgifttype).val());
-
-  $('#' + fgifttype).change(function() {
-    hideShowChapter($(this).val());
-  });
-
-  function hideShowChapter(giftval) {
-    if ($.inArray(giftval, chapterarr) !='-1') {
-      $('#chapter_code').select2('val', 1000);
-      $('#chapter_code_section').show();
-    }
-    else if ($.inArray(giftval, hidechap) !='-1') {
-      $('#chapter_code').select2('val', 1000);
-      $('#chapter_code_section').hide();
-    }
-    else {
-      $('#chapter_code').select2('val', 1000);
-      $('#chapter_code_section').hide();
-    }
-  }
 
   // Gift Type
   $('input[name="gift_type"]').css('display', 'none');
@@ -77,21 +46,10 @@ CRM.$(function($) {
 
   // Other checkbox
   $("label[for='" + otherprice + "']").text('');
+
   // "None" price field.
-  {/literal}
-  {if $isFr}
-  {literal}
-    $(onetimenone).next('label').text('Autre');
-    $(monthlynone).next('label').text('Autre');
-    $('#amount_sum_label').text("Montant de la contribution");
-  {/literal}
-  {else}
-  {literal}
-    $(onetimenone).next('label').text('Other');
-    $(monthlynone).next('label').text('Other');
-  {/literal}
-  {/if}
-  {literal}
+  $(onetimenone).next('label').text('Other');
+  $(monthlynone).next('label').text('Other');
 
   $('input[name="gift_type"]').change(function() {
     hideShow($(this).val());
@@ -123,24 +81,11 @@ CRM.$(function($) {
     }
   }
 
-  function hideShowGift(type) {
-    if (type) {
-      $('#editrow-' + fgifttype).hide();
-      $('#' + fgifttype).select2('val', "Memorial Donation");
-      $('#' + fgifttype).trigger('change');
-    }
-    else {
-      $('#' + fgifttype).select2('val', "General Donation");
-      $('#' + fgifttype).trigger('change');
-      $('#editrow-' + fgifttype).show();
-    }
-  }
-
   function hideShow(type) {
     if (type == 'monthly') {
-      $('.amount_monthly-section').show();
+      $('.monthly-section').show();
       $('#' + otherprice).show();
-      $('.amount_one_time-section').hide();
+      $('.one_time-section').hide();
       $('#is_recur').prop('checked', true);
       $('#' + otherprice).appendTo($(monthlynone).parent());
 
@@ -153,9 +98,9 @@ CRM.$(function($) {
       $('#' + otherprice).trigger('keyup');
     }
     else {
-      $('.amount_one_time-section').show();
+      $('.one_time-section').show();
       $('#' + otherprice).show();
-      $('.amount_monthly-section').hide();
+      $('.monthly-section').hide();
       $('#is_recur').prop('checked', false);
       $('#' + otherprice).appendTo($(onetimenone).parent());
 
