@@ -1,8 +1,9 @@
 .button-block {
-  background-color: #026288 !important;
+  background-color: rgba(92, 159, 89, 1) !important;
+  font-family: "Montserrat", Sans-serif;
   color: #fff !important;
-  border: 2px solid #636359 !important;
-  border-radius: 0px;
+  border: none;
+  border-radius: 3px;
   font-size: 16px;
   text-transform: uppercase;
   text-decoration: none !important;
@@ -42,9 +43,8 @@ color: #ffffff !important;
 
 .button-block:hover {
   color: #ffffff !important;
-  border: 2px solid #026288 !important;
-  position: relative; 
-  top: -2px; 
+  background-color: rgba(92, 159, 89, 0.75) !important;
+  border: none !important;
 }
 
 #gift_type, #donation_type {
@@ -53,7 +53,7 @@ color: #ffffff !important;
 }
 
 #donation_type, #pricesetTotal {
-  padding-top: 35px;
+  padding-top: 60px;
 }
   
 
@@ -71,7 +71,7 @@ input[type="radio"]:checked+label:before {
 }
 
 .soft_credit_type_id-section {
-  padding-bottom: 18px;
+  padding-bottom: 60px;
 }
 
 .one_time-section > div.label > label:first-child, .monthly-section > div.label > label:first-child {
