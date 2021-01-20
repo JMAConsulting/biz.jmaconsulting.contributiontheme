@@ -46,6 +46,22 @@ CRM.$(function($) {
 
   // Other checkbox
   $("label[for='" + otherprice + "']").text('');
+  
+  // Clear other textbox when radio is selected.
+  $('#priceset input:radio').click(function() {
+    $('#' + otherprice).val('');
+    $('#' + otherprice).trigger('keyup');
+  });
+
+  // Clear radio if other text is entered.
+  $('#' + otherprice).click(function () {
+    if ($('input[name=gift_type]:checked').val() == 'monthly') {
+      $(monthlynone).prop("selected", true).trigger("click");
+    }
+    else {
+      $(onetimenone).prop("selected", true).trigger("click");
+    }
+  });
 
   // "None" price field.
   $(onetimenone).next('label').text('Other');
