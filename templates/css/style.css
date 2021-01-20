@@ -116,6 +116,12 @@ input[type="radio"]:checked+label:before {
   #street_address-Primary {
     width: 15em !important;
   }
+  #pricevalue {
+    margin-top: 3% !important;
+  }
+  #crm-container.crm-public .custom_pre_profile-group .label, #crm-container.crm-public .custom_post_profile-group .label {
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (max-width: 420px) {
@@ -140,4 +146,10 @@ input[type="radio"]:checked+label:before {
   #street_address-Primary {
     width: 15em !important;
   }
+  #pricevalue {
+    margin-top: 3% !important;
+  }
+  #crm-container.crm-public .custom_pre_profile-group .label, #crm-container.crm-public .custom_post_profile-group .label {
+    font-size: 12px !important;
+  }    
 }
