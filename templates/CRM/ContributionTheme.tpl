@@ -1,29 +1,33 @@
-<div id="gift_type">{$form.gift_type.html}</div>
+<div id="gift_type">{$form.gift_type.html}<br/><div class="clear"></div><div id="price-options">{$form.contrib_amount.html}</div></div>
 <div id="donation_type">{$form.donation_type.html}</div>
 
 {literal}
 <script type="text/javascript">
 CRM.$(function($) {
-  var onetimeprice = "price_436";
-  var monthlyprice = "price_437";
-  var otherprice = "price_438";
-  var onetimenone = $('input[name=price_436][value=0]');
-  var monthlynone = $('input[name=price_437][value=0]');
+  var onetimeprice = "price_439";
+  var monthlyprice = "price_444";
+  var otherprice = "donationamount";
+  var onetimenone = $('input[name=price_439][value=0]');
+  var monthlynone = $('input[name=price_444][value=0]');
 
   $('input[name="' + onetimeprice + '"]').css('display', 'none');
   $('input[name="' + monthlyprice + '"]').css('display', 'none');
+  $('input[name="contrib_amount"]').css('display', 'none');
 
   $('input[name="' + onetimeprice + '"]+label').addClass('button-block');
   $('input[name="' + monthlyprice + '"]+label').addClass('button-block');
+  $('input[name="contrib_amount"]+label').addClass('button-block');
 
   $('.monthly-section').hide();
   $('.monthly-section > .label').hide();
   $('.one_time-section').hide();
   $('.one_time-section > .label').hide();
-  $('#' + otherprice).hide();
 
   var gifttype = $('input[name=gift_type]:checked').val();
   hideShow(gifttype);
+  $('input[name="gift_type"]').change(function() {
+    hideShow($(this).val());
+  });
 
   // Gift Type
   $('input[name="gift_type"]').css('display', 'none');
@@ -34,14 +38,13 @@ CRM.$(function($) {
   $('input[name="donation_type"]').css('display', 'none');
   $('input[name="donation_type"]+label').addClass('button-block');
   $('#donation_type').insertBefore($('#onBehalfOfOrg'));
-
+  
   // In Honour of
   $('input[name="soft_credit_type_id"]').css('display', 'none');
   $('input[name="soft_credit_type_id"]+label').addClass('button-block');
   $('.soft_credit_type_id-section').find('div.description').hide();
-
+  $('.honor_block-group').insertAfter('#donation_type');
   $('input[name="soft_credit_type_id"]').change(function() {
-    hideShowGift(this.checked);
   });
 
   // Other checkbox
@@ -55,11 +58,13 @@ CRM.$(function($) {
 
   // Clear radio if other text is entered.
   $('#' + otherprice).click(function () {
-    if ($('input[name=gift_type]:checked').val() == 'monthly') {
-      $(monthlynone).prop("selected", true).trigger("click");
+    if (gifttype == 'monthly') {
+      $(monthlynone).prop('selected', true);
+      $(monthlynone).trigger('click');
     }
     else {
-      $(onetimenone).prop("selected", true).trigger("click");
+      $(onetimenone).prop('selected', true);
+      $(onetimenone).trigger('click');
     }
   });
 
@@ -67,22 +72,21 @@ CRM.$(function($) {
   $(onetimenone).next('label').text('Other');
   $(monthlynone).next('label').text('Other');
 
-  $('input[name="gift_type"]').change(function() {
-    hideShow($(this).val());
-  });
-
   $('input[name="donation_type"]').change(function() {
     hideShowOrg($(this).val());
   });
   
   $('#' + otherprice).click(function() {
+   gifttype = $('.one_time-section').is(":visible") ? "one_time" : "monthly";
     if (gifttype == "monthly") {
       $(monthlynone).parent().addClass('highlight');
       $(onetimenone).parent().removeClass('highlight');
+      $(monthlynone).prop("selected", true).trigger("click");
     }
     else {
       $(onetimenone).parent().addClass('highlight');
       $(monthlynone).parent().removeClass('highlight');
+      $(onetimenone).prop("selected", true).trigger("click");
     }
   });
 
@@ -99,34 +103,10 @@ CRM.$(function($) {
 
   function hideShow(type) {
     if (type == 'monthly') {
-      $('.monthly-section').show();
-      $('#' + otherprice).show();
-      $('.one_time-section').hide();
       $('#is_recur').prop('checked', true);
-      $('#' + otherprice).appendTo($(monthlynone).parent());
-
-      // Check the none textbox
-      $(onetimenone).prop('checked', true);
-      $(onetimenone).trigger('click');
-      $('input[name="' + onetimeprice + '"]').parent().removeClass('highlight');
-      $(onetimenone).parent().removeClass('highlight');
-      $('#' + otherprice).val('');
-      $('#' + otherprice).trigger('keyup');
     }
     else {
-      $('.one_time-section').show();
-      $('#' + otherprice).show();
-      $('.monthly-section').hide();
       $('#is_recur').prop('checked', false);
-      $('#' + otherprice).appendTo($(onetimenone).parent());
-
-      // Check the none textbox
-      $(monthlynone).prop('checked', true);
-      $(monthlynone).trigger('click');
-      $('input[name="' + monthlyprice + '"]').parent().removeClass('highlight');
-      $(monthlynone).parent().removeClass('highlight');
-      $('#' + otherprice).val('');
-      $('#' + otherprice).trigger('keyup');
     }
   }
 

@@ -109,13 +109,22 @@ function contributiontheme_civicrm_alterSettingsFolders(&$metaDataFolders = NULL
 
 function contributiontheme_civicrm_buildForm($formName, &$form) {
   if ($formName == "CRM_Contribute_Form_Contribution_Main" && $form->_id == 16) {
+    $contribOptions = [];    
+    $fees = $form->_values['fee'];
+    foreach ($fees as $fieldId => $fieldInformation) {
+      if ($fieldInformation['name'] == 'one_time') {
+        foreach ($fieldInformation['options'] as $option) {
+          $contribOptions[(int) $option['amount']] = $option['label'];
+        }
+      }
+    }
     CRM_Core_Resources::singleton()->addStyleFile('biz.jmaconsulting.contributiontheme', 'templates/css/style.css');
     $form->addRadio('gift_type', ts(''), ['monthly' => ts('Monthly'), 'one_time' => ts('One Time')], null, '&nbsp;&nbsp;');
     $form->addRadio('donation_type', ts(''), ['personal' => ts('Personal Donation'), 'organization' => ts('Organization Donation')], null, '&nbsp;&nbsp;');
-    $form->setDefaults(['gift_type' => 'one_time', 'donation_type' => 'personal']);
+    $form->addRadio('contrib_amount', ts(''), $contribOptions, null, '&nbsp;&nbsp;');
+    $form->setDefaults(['gift_type' => 'one_time', 'donation_type' => 'personal', 'contrib_amount' => 20]);
     CRM_Core_Region::instance('page-body')->add(array(
       'template' => 'CRM/ContributionTheme.tpl',
     ));
   }
 }
-

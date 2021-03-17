@@ -1,10 +1,10 @@
 .button-block {
   background-color: rgba(92, 159, 89, 1) !important;
   font-family: "Montserrat", Sans-serif;
-  color: #fff !important;
+  color: white !important;
   border: none;
   border-radius: 3px;
-  font-size: 16px;
+  font-size: 16px !important;
   text-transform: uppercase;
   text-decoration: none !important;
   padding: 16px 28px;
@@ -14,6 +14,10 @@
   display: inline-block;
   margin-bottom: 16px;
   cursor: pointer;
+}
+
+#price-options {
+  padding-top: 3.5em;
 }
 
 .other-section {
@@ -38,7 +42,7 @@
 }
 
 #price_438:([type='radio']){
-color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .button-block:hover {
@@ -47,21 +51,33 @@ color: #ffffff !important;
   border: none !important;
 }
 
-#gift_type, #donation_type {
+#gift_type, #donation_type, .one_time-content, .monthly-content {
   text-align: center !important;
   padding-bottom: 35px;
+  margin-left: 10% !important;
 }
 
 #donation_type, #pricesetTotal {
-  padding-top: 60px;
-}
-  
-
-input[type="radio"]:checked+label {
-  font-weight: bold !important;
+  padding-top: 40px;
 }
 
-input[type="radio"]:checked+label:before {
+.crm-price-amount-label,
+.crm-container input[type=checkbox]+label[for]:not(:checked):not(for=billingcheckbox) {
+  font-weight: normal !important;
+  color: white !important;
+}
+
+input[type="radio"]:checked+label .button-block, div.crm-container input[type=radio]:not(:checked)+div.price-set-rows label {
+  display: inline-block;
+  font-weight: 600 !important;
+}
+
+input[type="radio"]:checked+label, input[type="radio"]:checked+div.price-set-rows label {
+  font-weight: 600 !important;
+  display: inline-block;
+}
+
+input[type="radio"]:checked+label:before, input[type="radio"]:checked+div.price-set-rows label:before {
   content: "\f00c";
   font-family: FontAwesome;
 }
@@ -71,19 +87,19 @@ input[type="radio"]:checked+label:before {
 }
 
 .soft_credit_type_id-section {
-  padding-bottom: 60px;
+  padding-bottom: 20px;
 }
 
-.one_time-section > div.label > label:first-child, .monthly-section > div.label > label:first-child {
+#editrow-do_not_trade, .billing_country_id-5-section, .one_time-section > div.label > label:first-child, .monthly-section > div.label > label:first-child {
   display: none;
 }
 
-#_qf_Main_upload-bottom {
-  width: 195px !important;
+textarea {
+  width: -webkit-fill-available;
 }
 
-.price-set-rows {
-  padding: 20px 0;
+#priceset .content {
+  margin-left: 0% !important;
 }
 
 .crm-container .crm-button.cancel {
@@ -99,17 +115,23 @@ input[type="radio"]:checked+label:before {
     border: none !important;
 }
 
+.credit_card_info-group {
+  padding-bottom: 2em !important;
+}
+
+.billing_name_address-group {
+  margin-top: 25px !important;
+}
+
 @media only screen and (max-width: 901px) {
   /* For mobile phones: */
   .crm-container .crm-section .custom_pre_profile-group .label {
     display: contents !important;	  
   }
-  #pricesetTotal {
-    display: flex !important;
-  }
   .monthly-row1, .one_time-row1 {
     margin-left: 16% !important;
   }
+
   #honorType {
     margin-top: 35% !important;
   }    
@@ -121,6 +143,21 @@ input[type="radio"]:checked+label:before {
   }
   #crm-container.crm-public .custom_pre_profile-group .label, #crm-container.crm-public .custom_post_profile-group .label {
     font-size: 12px !important;
+  }
+  .label, .content {
+	  display: block !important;
+	  float: left !important;
+	  clear: left !important;
+
+  }
+  .crm-container .crm-section .label {
+	  width: 100% !important;
+  }
+  .soft_credit_type_id-section {
+	  text-align: center !important;
+  }
+  #branchamount, #nationalamount {
+	  width: 15% !important;
   }
 }
 
@@ -134,8 +171,8 @@ input[type="radio"]:checked+label:before {
   .crm-container .crm-section .custom_pre_profile-group .label {
     display: contents !important;
   }
-  #pricesetTotal {
-    display: flex !important;
+  textarea {
+   width: -webkit-fill-available;
   }    
   .monthly-row1, .one_time-row1 {
     margin-left: 16% !important;
